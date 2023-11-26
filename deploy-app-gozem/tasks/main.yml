@@ -1,0 +1,41 @@
+---
+# tasks file for deploy-app-gozem
+
+- name: Install the latest version of awscli and amazon-ecr-credential-helper
+  ansible.builtin.package:
+    name:
+      - awscli
+      - amazon-ecr-credential-helper
+    state: latest
+
+
+- name: Creates directory
+  ansible.builtin.file:
+    path: /home/ubuntu/.docker
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: 0700
+
+  
+- name: Creating a file credential docker
+  copy:
+    dest: /home/ubuntu/.docker/config.json
+    content: |
+      {"credsStore": "ecr-login"}
+
+
+- name: pull image
+  shell: >-
+    docker pull {{ api_gozem_image }}
+    
+- name: docker ps api
+  shell: >-
+    docker ps -f name=api
+  register: result
+
+- name: start container
+  shell: >-
+    docker run  --name api  -d  -p {{ ports }}:8080 --name api -e NODE_DOCKER_PORT={{ ports }} -e DB_URL="{{ db_url }}"  {{ api_gozem_image }}
+  when: result.stdout.find('api') == -1
+
