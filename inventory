@@ -1,3 +1,3 @@
 [all]
-15.237.49.31 ansible_ssh_private_key_file=/home/seidou/Images/Test-gozem/design-vpc/ssh/project  ansible_user=ubuntu  ansible_port=22
-13.36.194.233  ansible_ssh_private_key_file=/home/seidou/Images/Test-gozem/design-vpc/ssh/project  ansible_user=ubuntu ansible_port=22
+35.180.134.186 ansible_ssh_private_key_file=/home/seidou/Images/Test-gozem/design-vpc/ssh/project  ansible_user=ubuntu  ansible_port=22
+35.180.35.172  ansible_ssh_private_key_file=/home/seidou/Images/Test-gozem/design-vpc/ssh/project  ansible_user=ubuntu ansible_port=22
